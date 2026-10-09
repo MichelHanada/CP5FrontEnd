@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TechFlow Dev</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script>(()=>{const p=localStorage.getItem('tf-theme')||'system';document.documentElement.classList.toggle('dark',p==='dark'||(p==='system'&&matchMedia('(prefers-color-scheme: dark)').matches))})()</script>
+<link rel="stylesheet" href="css/styles.css">
+<script src="js/app.js" defer></script>
+</head>
+<body class="grid-bg bg-slate-50 text-slate-800 transition-colors duration-300 dark:bg-[#070b14] dark:text-slate-100">
+<div id="overlay" class="pointer-events-none fixed inset-0 z-30 bg-black/50 opacity-0 transition-opacity duration-300 lg:hidden"></div>
+
+<aside id="sidebar" class="fixed inset-y-0 left-0 z-40 flex w-64 -translate-x-full flex-col justify-between gap-6 border-r border-slate-200 bg-white p-5 transition-transform duration-300 ease-out dark:border-white/10 dark:bg-[#0d1424] lg:translate-x-0">
+  <div class="flex flex-col gap-8">
+    <div class="flex items-center gap-2 text-xl font-bold"><span class="grid h-9 w-9 place-items-center rounded-xl bg-cyan-600 text-sm font-bold text-white">&lt;/&gt;</span>TechFlow<span class="text-emerald-400">.dev</span></div>
+    <nav class="flex flex-col gap-1" aria-label="Principal">
+      <a href="#" class="group flex items-center justify-between rounded-xl bg-cyan-50 px-3 py-2.5 text-sm font-medium text-cyan-700 transition focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:bg-white/10 dark:text-cyan-300"><span class="flex gap-3"><span>💻</span>Dashboard</span><span class="opacity-0 transition group-hover:opacity-100">→</span></a>
+      <a href="#" class="group flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-cyan-50 hover:text-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 active:scale-95 dark:text-slate-300 dark:hover:bg-white/5"><span class="flex gap-3"><span>🗂️</span>Projetos</span><span class="opacity-0 transition group-hover:opacity-100">→</span></a>
+      <a href="#" class="group flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-cyan-50 hover:text-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 active:scale-95 dark:text-slate-300 dark:hover:bg-white/5"><span class="flex gap-3"><span>👥</span>Squads</span><span class="opacity-0 transition group-hover:opacity-100">→</span></a>
+      <a href="#" class="group flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-cyan-50 hover:text-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 active:scale-95 dark:text-slate-300 dark:hover:bg-white/5"><span class="flex gap-3"><span>📊</span>Observabilidade</span><span class="opacity-0 transition group-hover:opacity-100">→</span></a>
+    </nav>
+  </div>
+  <div class="rounded-2xl bg-gradient-to-br from-cyan-600 to-indigo-700 p-4 text-sm text-white">
+    <p class="font-bold">Próximo deploy</p>
+    <p class="mt-1 text-cyan-100">v2.4 em produção em 03 dias</p>
+  </div>
+</aside>
+
+<header class="sticky top-0 z-20 flex items-center justify-between gap-3 border-b border-slate-200 bg-white/80 px-4 py-3 backdrop-blur sm:px-6 dark:border-white/10 dark:bg-[#070b14]/80 lg:ml-64">
+  <button id="menuBtn" aria-label="Abrir menu" aria-expanded="false" class="rounded-xl p-2 text-xl transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500 active:scale-90 dark:hover:bg-white/10 lg:hidden">☰</button>
+  <input id="search" type="search" placeholder="Buscar projeto..." class="min-w-0 flex-1 rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm transition focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 sm:max-w-md dark:border-white/10 dark:bg-white/5">
+  <div class="flex items-center gap-2 sm:gap-3">
+    <div class="flex rounded-xl border border-slate-200 p-1 text-xs dark:border-white/10" role="group" aria-label="Tema">
+      <button data-theme="light" class="rounded-lg px-2 py-1.5 transition active:scale-95">☀️<span class="ml-1 hidden md:inline">Light</span></button>
+      <button data-theme="dark" class="rounded-lg px-2 py-1.5 transition active:scale-95">🌙<span class="ml-1 hidden md:inline">Dark</span></button>
+      <button data-theme="system" class="rounded-lg px-2 py-1.5 transition active:scale-95">💻<span class="ml-1 hidden md:inline">System</span></button>
+    </div>
+    <div class="relative">
+      <button id="userBtn" aria-expanded="false" class="flex items-center gap-2 rounded-xl p-1 transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:hover:bg-white/10">
+        <span class="grid h-9 w-9 place-items-center rounded-full bg-emerald-400 text-sm font-bold text-slate-900">MH</span>
+        <span class="hidden text-left text-sm leading-tight md:block"><b>Michel Hanada</b><br><span class="text-xs text-slate-500">Tech Lead</span></span>
+      </button>
+      <ul id="userMenu" class="absolute right-0 mt-2 hidden w-48 flex-col overflow-hidden rounded-xl border border-slate-200 bg-white py-1 text-sm shadow-xl dark:border-white/10 dark:bg-[#0d1424]">
+        <li><a href="#" class="block px-4 py-2 transition hover:bg-cyan-50 dark:hover:bg-white/10">Perfil</a></li>
+        <li><a href="#" class="block px-4 py-2 transition hover:bg-cyan-50 dark:hover:bg-white/10">Configurações</a></li>
+        <li><a href="#" class="block px-4 py-2 text-rose-500 transition hover:bg-rose-50 dark:hover:bg-white/10">Sair</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main class="flex flex-col gap-6 p-4 sm:p-6 xl:p-8 lg:ml-64">
+  <div class="rise flex flex-wrap items-center justify-between gap-4">
+    <div><h1 class="text-2xl font-bold sm:text-3xl">Painel de projetos</h1><p class="text-sm text-slate-500 dark:text-slate-400">$ techflow --status: todos os sistemas operacionais</p></div>
+    <button id="openModal" class="rounded-xl bg-cyan-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 active:scale-95 dark:focus:ring-offset-[#070b14]">+ Novo projeto</button>
+  </div>
+
+  <section class="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
+    <div class="rise rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 dark:border-white/10 dark:bg-[#0d1424]"><p class="text-xs text-slate-500">🚀 Projetos ativos</p><p id="statActive" class="mt-2 text-3xl font-bold">0</p></div>
+    <div class="rise rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 dark:border-white/10 dark:bg-[#0d1424]"><p class="text-xs text-slate-500">✅ Projetos concluídos</p><p class="mt-2 text-3xl font-bold">24</p></div>
+    <div class="rise rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 dark:border-white/10 dark:bg-[#0d1424]"><p class="text-xs text-slate-500">⏳ Tarefas pendentes</p><p class="mt-2 text-3xl font-bold text-emerald-400">47</p></div>
+    <div class="rise rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 dark:border-white/10 dark:bg-[#0d1424]"><p class="text-xs text-slate-500">👥 Equipes</p><p class="mt-2 text-3xl font-bold">6</p></div>
+  </section>
+
+  <section id="grid" class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4"></section>
+  <p id="empty" class="hidden text-center text-sm text-slate-500">Nenhum projeto encontrado.</p>
+</main>
+
+<div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4" role="dialog" aria-modal="true">
+  <form id="form" novalidate class="flex max-h-full w-full max-w-lg flex-col gap-4 overflow-y-auto rounded-2xl bg-white p-6 dark:bg-[#0d1424]">
+    <div class="flex items-center justify-between"><h2 class="text-lg font-bold">Novo projeto</h2><button type="button" id="closeModal" aria-label="Fechar" class="rounded-lg px-2 text-xl transition hover:bg-slate-100 active:scale-90 dark:hover:bg-white/10">✕</button></div>
+    <label class="flex flex-col gap-1 text-sm font-medium">Nome
+      <input name="name" class="rounded-xl border border-slate-300 bg-transparent px-3 py-2 font-normal transition focus:outline-none focus:ring-2 focus:ring-cyan-500/40 dark:border-white/20">
+      <span data-err="name" class="hidden text-xs font-normal text-rose-500"></span></label>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <label class="flex flex-col gap-1 text-sm font-medium">Responsável
+        <select name="owner" class="rounded-xl border border-slate-300 bg-transparent px-3 py-2 font-normal transition focus:outline-none focus:ring-2 focus:ring-cyan-500/40 dark:border-white/20 dark:bg-[#0d1424]"><option value="">Selecione</option><option>Michel</option><option>Marcos</option><option>Felipe</option></select>
+        <span data-err="owner" class="hidden text-xs font-normal text-rose-500"></span></label>
+      <label class="flex flex-col gap-1 text-sm font-medium">Categoria
+        <select name="category" class="rounded-xl border border-slate-300 bg-transparent px-3 py-2 font-normal transition focus:outline-none focus:ring-2 focus:ring-cyan-500/40 dark:border-white/20 dark:bg-[#0d1424]"><option value="">Selecione</option><option>Infraestrutura</option><option>Desenvolvimento</option><option>Dados</option><option>UX/UI</option><option>Segurança</option></select>
+        <span data-err="category" class="hidden text-xs font-normal text-rose-500"></span></label>
+    </div>
+    <fieldset class="flex flex-col gap-2"><legend class="mb-1 text-sm font-medium">Prioridade</legend>
+      <div class="flex flex-wrap gap-2">
+        <label><input type="radio" name="priority" value="Alta" class="peer sr-only"><span class="block cursor-pointer rounded-full border border-slate-300 px-4 py-1.5 text-sm transition peer-checked:border-rose-500 peer-checked:bg-rose-500 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-cyan-500 dark:border-white/20">Alta</span></label>
+        <label><input type="radio" name="priority" value="Média" class="peer sr-only"><span class="block cursor-pointer rounded-full border border-slate-300 px-4 py-1.5 text-sm transition peer-checked:border-amber-500 peer-checked:bg-amber-500 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-cyan-500 dark:border-white/20">Média</span></label>
+        <label><input type="radio" name="priority" value="Baixa" class="peer sr-only"><span class="block cursor-pointer rounded-full border border-slate-300 px-4 py-1.5 text-sm transition peer-checked:border-emerald-500 peer-checked:bg-emerald-500 peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-cyan-500 dark:border-white/20">Baixa</span></label>
+      </div>
+      <span data-err="priority" class="hidden text-xs text-rose-500"></span></fieldset>
+    <label class="flex flex-col gap-1 text-sm font-medium">Prazo
+      <input type="date" name="due" class="rounded-xl border border-slate-300 bg-transparent px-3 py-2 font-normal transition focus:outline-none focus:ring-2 focus:ring-cyan-500/40 dark:border-white/20 dark:[color-scheme:dark]">
+      <span data-err="due" class="hidden text-xs font-normal text-rose-500"></span></label>
+    <label class="flex flex-col gap-1 text-sm font-medium">Descrição
+      <textarea name="desc" rows="3" class="rounded-xl border border-slate-300 bg-transparent px-3 py-2 font-normal transition focus:outline-none focus:ring-2 focus:ring-cyan-500/40 dark:border-white/20"></textarea>
+      <span data-err="desc" class="hidden text-xs font-normal text-rose-500"></span></label>
+    <button id="submitBtn" type="submit" class="rounded-xl bg-cyan-600 py-2.5 text-sm font-medium text-white transition hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-cyan-600">Criar projeto</button>
+  </form>
+</div>
+
+<div id="toast" class="pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 translate-y-4 rounded-xl bg-emerald-600 px-5 py-3 text-sm text-white opacity-0 shadow-xl transition-all duration-300">✅ Projeto criado com sucesso</div>
+</body>
+</html>

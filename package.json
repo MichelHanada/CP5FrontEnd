@@ -1,0 +1,12 @@
+{
+  "name": "techflow-dashboard",
+  "private": true,
+  "scripts": {
+    "build": "tailwindcss -i ./css/input.css -o ./css/styles.css --minify",
+    "dev": "tailwindcss -i ./css/input.css -o ./css/styles.css --watch",
+    "watch": "tailwindcss -i ./css/input.css -o ./css/styles.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
